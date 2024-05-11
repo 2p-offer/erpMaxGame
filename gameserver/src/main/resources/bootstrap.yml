@@ -1,0 +1,16 @@
+spring:
+  application:
+    name: emg
+  profiles:
+    active: dev
+  cloud:
+    zookeeper:
+      connect-string: 192.168.151.63:14410
+      config:
+        enabled: true
+        #        配置根节点名称，默认为config。
+        root: erconfig
+        #        全局配置节点名称，默认为application。
+        default-context: emg_default
+#        设置服务名和环境名称之间的分隔符，默认为英文逗号。
+#        profile-separator: ,

@@ -1,0 +1,37 @@
+version: "3"
+services:
+  # 本地通过容器启动 zookeeper, mongodb, redis 等开发过程中依赖的数据库服务
+
+  zookeeper:
+    container_name: emg-zookeeper
+    image: mirror.youle.game/zookeeper:3.6.3
+    environment:
+      - TZ=Asia/Shanghai
+    ports:
+      - "14410:2181"
+    volumes:
+      - ./compose/database/zookeeper:/data
+
+  mongo:
+    container_name: emg-mongo
+    image: mirror.youle.game/mongo:4.2.18
+    environment:
+      - TZ=Asia/Shanghai
+      - MONGO_INITDB_ROOT_USERNAME=siteRootAdmin
+      - MONGO_INITDB_ROOT_PASSWORD=mongodb_password
+    ports:
+      - "14411:27017"
+    volumes:
+      - ./compose/database/mongo:/data/db
+
+  redis:
+    container_name: emg-redis
+    image: mirror.youle.game/redis:3.2.12
+    environment:
+      - TZ=Asia/Shanghai
+    ports:
+      - "14412:6379"
+    volumes:
+      - ./redis.conf:/etc/redis/redis.conf
+      - ./compose/database/redis:/var/lib/redis
+    command: [ "redis-server", "/etc/redis/redis.conf" ]

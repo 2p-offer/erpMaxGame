@@ -1,0 +1,5 @@
+/erconfig []
+/erconfig/emg,dev []
+/erconfig/emg,dev/erp wangyan
+/erconfig/emg_default []
+/erconfig/emg_default/defdata def1

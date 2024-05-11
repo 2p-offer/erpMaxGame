@@ -1,0 +1,48 @@
+syntax = "proto3";
+
+import "config.proto";
+
+option java_package = "com.erp.biz.logic.msg.push";
+option java_outer_classname = "BattleMsg";
+
+
+message BattleReport{
+  BattleStart start = 1;
+  BattleInit init = 2;
+  repeated BattleRound round_all = 3;
+  BattleEnd end = 4;
+}
+
+message BattleStart{
+  string sceneTag = 1;
+  SceneUnit attacker = 2;
+  SceneUnit defenser = 3;
+}
+
+message SceneUnit{
+  string key = 1;
+  string name = 2;
+}
+
+message BattleInit{
+
+}
+
+message BattleEnd{
+
+}
+
+message BattleRound{
+
+}
+
+message BattleAction{
+
+}
+
+message SkillCast{
+  string optKey = 1;
+  string targetKey = 2;
+  string skill_id = 3;
+  string skill_tag = 4;
+}

@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+import "google/protobuf/descriptor.proto";
+
+option java_package = "com.erp.biz.logic.msg.request";
+option java_outer_classname = "Options";
+
+extend google.protobuf.FileOptions {
+    string module_name = 50000;
+}
+
+extend google.protobuf.MessageOptions {
+    int32 msg_code = 50001;
+}

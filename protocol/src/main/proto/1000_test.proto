@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+import "config.proto";
+
+option java_package = "com.erp.biz.logic.msg.request";
+option java_outer_classname = "TestMsg";
+
+// 玩家主动登陆
+message LoginRequest {
+    option (msg_code) = 100101;
+    // 玩家rid
+    string rid = 1;
+}
+
+message LoginResponse {
+    string rid = 1;
+}
