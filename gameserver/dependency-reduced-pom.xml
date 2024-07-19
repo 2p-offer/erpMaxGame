@@ -169,4 +169,7 @@
       <scope>provided</scope>
     </dependency>
   </dependencies>
+  <properties>
+    <log4j-maven-shade-extensions-version>0.1.0</log4j-maven-shade-extensions-version>
+  </properties>
 </project>
