@@ -12,6 +12,10 @@
     <description>gameserver</description>
     <modelVersion>4.0.0</modelVersion>
 
+
+    <properties>
+        <log4j-maven-shade-extensions-version>0.1.0</log4j-maven-shade-extensions-version>
+    </properties>
     <dependencies>
         <dependency>
             <groupId>com.erp</groupId>
@@ -23,6 +27,17 @@
             <artifactId>protocol</artifactId>
             <version>${project.version}</version>
         </dependency>
+        <!-- https://github.com/edwgiz/maven-shaded-log4j-transformer/blob/master/README.md
+         解决以下报错（在shade打出来的包运行时报错）
+         2024-07-19 10:22:30 ERROR StatusLogger Unrecognized format specifier [d]
+         2024-07-19 10:22:30 ERROR StatusLogger Unrecognized conversion specifier [d] starting at position 16 in conversion pattern.
+         -->
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-transform-maven-shade-plugin-extensions</artifactId>
+            <version>${log4j-maven-shade-extensions-version}</version>
+        </dependency>
+
     </dependencies>
     <build>
         <plugins>

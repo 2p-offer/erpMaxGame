@@ -28,6 +28,7 @@
         <java.version>21</java.version>
         <protobuf.version>3.25.1</protobuf.version>
         <spring-cloud-version>4.1.0</spring-cloud-version>
+        <log4j2.disruptor.version>3.4.4</log4j2.disruptor.version>
     </properties>
     <dependencies>
         <dependency>
@@ -84,7 +85,12 @@
                 </exclusion>
             </exclusions>
         </dependency>
-
+        <!-- disruptor, 用于 log4j2 依赖的无锁队列框架 为了支持<AsyncLogger>-->
+        <dependency>
+            <groupId>com.lmax</groupId>
+            <artifactId>disruptor</artifactId>
+            <version>${log4j2.disruptor.version}</version>
+        </dependency>
     </dependencies>
 
     <build>
