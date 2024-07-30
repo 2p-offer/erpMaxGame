@@ -22,6 +22,7 @@ docker build --tag 2poffer/self_cloud:${TAG_NAME} \
   --file external/docker/Dockerfile \
   --label "提交ID=${COMMIT_ID}" \
   --label "最后提交时间=${COMMIT_DATE}" \
+  --platform linux/amd64 \
   .
 
 echo "构建完成，开始推送"

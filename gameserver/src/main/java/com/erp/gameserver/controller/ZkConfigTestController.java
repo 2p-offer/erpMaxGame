@@ -37,6 +37,7 @@ public class ZkConfigTestController {
     @ResponseBody
     public String returnBody() {
         LogManager.getLogger(this).info("request returnBody");
+        LogManager.getLogger(this).error(" error request returnBody");
         return "some data for responseBody";
     }
 
