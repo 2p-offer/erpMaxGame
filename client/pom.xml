@@ -9,20 +9,24 @@
         <version>0.0.1</version>
     </parent>
 
-    <artifactId>net</artifactId>
+    <artifactId>client</artifactId>
 
     <properties>
         <maven.compiler.source>21</maven.compiler.source>
         <maven.compiler.target>21</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <netty.version>4.1.112.Final</netty.version>
     </properties>
 
     <dependencies>
         <dependency>
-            <groupId>io.netty</groupId>
-            <artifactId>netty-all</artifactId>
-            <version>${netty.version}</version>
+            <groupId>com.erp</groupId>
+            <artifactId>net</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.erp</groupId>
+            <artifactId>core</artifactId>
+            <version>${project.version}</version>
         </dependency>
     </dependencies>
 

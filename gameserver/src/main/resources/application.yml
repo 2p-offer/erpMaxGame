@@ -1,2 +1,4 @@
 logging:
   config: classpath:log4j2-spring.xml
+net:
+  tcp-port: 18001

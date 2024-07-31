@@ -16,6 +16,8 @@
         <module>gameserver</module>
         <module>protocol</module>
         <module>net</module>
+        <module>common</module>
+        <module>client</module>
     </modules>
 
     <groupId>com.erp</groupId>

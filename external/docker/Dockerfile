@@ -11,6 +11,8 @@ WORKDIR /erp
 
 # 暴露 Spring Boot 应用程序的端口
 EXPOSE 8080
+# 暴露远程debug端口
+EXPOSE 15005
 RUN mkdir -p /erp/log/gameserver
 
 # 设置容器启动时执行的命令
