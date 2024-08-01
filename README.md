@@ -6,7 +6,11 @@ maven 执行clean + install,更新[gameserver-0.0.1.jar](gameserver%2Ftarget%2Fg
 
 在/external/docker 目录下执行命令 \
 sh build.sh gameserver(服务名称) 071901(版本名称) \
-一个名叫 gameserver-071901 的docker镜像被推送到dockerHub \
+一个名叫 gameserver-071901 的docker镜像被推送到dockerHub 
 
-## 
+## groovy 脚本执行
+在local.groovy编写脚本，复制所有内容 \
+POST 调用localhost:28002/admin/groovy/groovy_invoke \
+Content-Type=text/plain;body=脚本内容 
+
 

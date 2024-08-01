@@ -1,4 +1,21 @@
+ports:
+  tcp: 28001
+  admin: 28002
+
 logging:
   config: classpath:log4j2-spring.xml
 net:
-  tcp-port: 18001
+  tcp-port: ${ports.tcp}
+
+# 服务管理配置
+management:
+  server:
+    port: ${ports.admin}
+  endpoints:
+    #    enabled-by-default: true
+    web:
+      exposure:
+        include:
+          - 'groovy'
+      #       - '*'
+      base-path: /admin

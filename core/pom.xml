@@ -11,4 +11,15 @@
         <relativePath>../pom.xml</relativePath>
     </parent>
 
+    <properties>
+        <groovy.version>4.0.21</groovy.version>
+    </properties>
+    <dependencies>
+        <!-- https://mvnrepository.com/artifact/org.apache.groovy/groovy -->
+        <dependency>
+            <groupId>org.apache.groovy</groupId>
+            <artifactId>groovy</artifactId>
+            <version>${groovy.version}</version>
+        </dependency>
+    </dependencies>
 </project>

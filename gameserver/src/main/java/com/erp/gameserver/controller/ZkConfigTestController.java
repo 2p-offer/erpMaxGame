@@ -11,8 +11,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 public class ZkConfigTestController {
 
-
-
     @Value("${defdata}")
     private String wy;
 
@@ -24,7 +22,6 @@ public class ZkConfigTestController {
 
         LogManager.getLogger(this).info("get ZK data,wy:{}", wy);
         throw new RuntimeException("123");
-//        return ResponseEntity.ok(emg);
     }
 
     @GetMapping("/forModel")
