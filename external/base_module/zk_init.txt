@@ -1,5 +1,15 @@
 /erconfig []
 /erconfig/emg,dev []
 /erconfig/emg,dev/erp wangyan
+
+# 节点测试数据
+/erconfig/emg,dev/test []
+/erconfig/emg,dev/test/test_str testStrValue
+/erconfig/emg,dev/test/testInt 123
+/erconfig/emg,dev/test/test_obj []
+/erconfig/emg,dev/test/test_obj/obj_str objStrValue
+/erconfig/emg,dev/test/test_obj/obj_long 314159
+
+
 /erconfig/emg_default []
 /erconfig/emg_default/defdata def1
