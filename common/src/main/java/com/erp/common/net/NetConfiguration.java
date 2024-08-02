@@ -1,5 +1,6 @@
 package com.erp.common.net;
 
+import com.erp.net.handler.AbstractNetMsgChannelInboundHandler;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
@@ -22,7 +23,7 @@ public class NetConfiguration {
 
     @Bean
     @ConditionalOnMissingBean
-    TcpServer tcpServer() {
-        return new TcpServer(this);
+    TcpServer tcpServer(AbstractNetMsgChannelInboundHandler bizHandler) {
+        return new TcpServer(this, bizHandler);
     }
 }

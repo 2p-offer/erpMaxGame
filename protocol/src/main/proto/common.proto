@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+import "config.proto";
+
+option java_package = "com.erp.biz.logic.msg.request";
+option java_outer_classname = "Components";
+
+message BizRequest {
+  bytes data = 1;
+}
+
+message BizResponse {
+  // 消息号
+  int32 msg_code = 1;
+  // 返回码
+  int32 res_code = 2;
+  // 返回消息
+  string res_msg = 3;
+  // 返回参数
+  map<string, string> res_params = 4;
+  // response message
+  bytes data = 5;
+}
