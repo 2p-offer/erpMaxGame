@@ -19,16 +19,11 @@ public abstract class GroovyScriptTemplate {
         this.applicationContext = applicationContext;
     }
 
-    public Set<String> matchServerIds() {
-        return null;
-    }
-
     private final LinkedList<String> printStrList = new LinkedList<>();
 
     protected <T> T getBean(Class<T> aClazz) {
         return applicationContext.getBean(aClazz);
     }
-
 
     protected ApplicationContext getApplicationContext() {
         return applicationContext;
