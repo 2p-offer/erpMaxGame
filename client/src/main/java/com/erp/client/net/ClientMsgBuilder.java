@@ -11,9 +11,9 @@ public class ClientMsgBuilder {
 
     private int requestId;
 
-    public NetMsg buildData(String data) {
+    public NetMsg buildData(int msgCode, String data) {
         NetMsg netMsg = new NetMsg();
-        netMsg.setMsgCode(1);
+        netMsg.setMsgCode(msgCode);
         netMsg.setRequestId(++requestId);
         netMsg.setMsgType(NetMsgType.DATA);
         byte[] byteData = buildProtobufData(data);

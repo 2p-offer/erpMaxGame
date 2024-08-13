@@ -12,13 +12,25 @@ public class Client {
         nettyClient.run();
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter text (type 'exit' to quit):");
-        while (true) {
-            String input = scanner.nextLine();
-            if ("exit".equalsIgnoreCase(input)) {
-                System.out.println("Exiting...");
-                break;
+        while (nettyClient.isAlive()) {
+            try {
+                String input = scanner.nextLine();
+                if ("exit".equalsIgnoreCase(input)) {
+                    System.out.println("Exiting...");
+                    break;
+                }
+                String[] split = input.split(" ", 2);
+                if (split.length < 2) {
+                    System.err.println("请求数据需要 msgCode + data 使用空格分割 [eg:1 role1]");
+                    continue;
+                }
+                int msgCode = Integer.parseInt(split[0]);
+                String data = split[1];
+                nettyClient.sendMsg(msgCode, data);
+            } catch (Throwable throwable) {
+                System.err.println("消息发送错误:" + throwable);
             }
-            nettyClient.sendMsg(input);
+
         }
         scanner.close();
         nettyClient.close();

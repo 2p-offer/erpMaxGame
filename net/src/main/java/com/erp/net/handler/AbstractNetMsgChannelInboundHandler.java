@@ -1,5 +1,6 @@
 package com.erp.net.handler;
 
+import com.erp.net.channel.NettyNetChannel;
 import com.erp.net.msg.NetMsg;
 import io.netty.channel.ChannelHandler;
 import io.netty.channel.ChannelHandlerContext;
@@ -16,7 +17,8 @@ public abstract class AbstractNetMsgChannelInboundHandler extends SimpleChannelI
 
     @Override
     protected void channelRead0(ChannelHandlerContext ctx, NetMsg msg) throws Exception {
-        messageReceived(ctx, msg);
+        NettyNetChannel channel = NettyNetChannel.findChannel(ctx);
+        messageReceived(channel, msg);
         ctx.fireChannelRead(msg);
     }
 
@@ -24,7 +26,8 @@ public abstract class AbstractNetMsgChannelInboundHandler extends SimpleChannelI
     public void userEventTriggered(ChannelHandlerContext ctx, Object evt) throws Exception {
         if (evt instanceof IdleStateEvent idleStateEvent) {
             if (idleStateEvent.state() == IdleState.READER_IDLE) {
-                logger.error("NET >> handler >> 读空闲超时，应该断开连接");
+                ctx.close();
+                logger.error("NET >> handler >> 读空闲超时，断开连接:{}", ctx);
             }
         }
         super.userEventTriggered(ctx, evt);
