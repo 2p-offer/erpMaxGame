@@ -3,7 +3,7 @@ syntax = "proto3";
 import "config.proto";
 
 option java_package = "com.erp.biz.logic.msg.request";
-option java_outer_classname = "TestMsg";
+option java_outer_classname = "LoginMsg";
 
 // 玩家主动登陆
 message LoginRequest {

@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+import "config.proto";
+
+option java_package = "com.erp.biz.logic.msg.request";
+option java_outer_classname = "SimpleStringMsg";
+
+// 发送一个随便的字符串消息
+message SimpleStringRequest {
+    option (msg_code) = 199901;
+    //发送的数据内容本身
+    string data = 1;
+}
+
+message SimpleStringResponse {
+    string data = 1;
+}

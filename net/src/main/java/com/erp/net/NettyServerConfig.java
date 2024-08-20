@@ -14,6 +14,6 @@ public class NettyServerConfig {
     public static int NET_MSG_READABLE_LENGTH_MAX = 1024 * 1024;
 
     /** netty channel 读空闲检测时长（s） */
-    public static int DEFAULT_READ_IDLE_TIME = 30 * 3;
+    public static int DEFAULT_READ_IDLE_TIME = 30 * 30;
 
 }

@@ -1,10 +1,13 @@
 package com.erp.client.net;
 
 import com.erp.biz.logic.msg.request.Components;
+import com.erp.biz.logic.msg.request.SimpleStringMsg;
 import com.erp.net.channel.NettyNetChannel;
 import com.erp.net.handler.AbstractNetMsgChannelInboundHandler;
 import com.erp.net.msg.NetMsg;
 import com.erp.net.msg.NetMsgType;
+import com.erp.net.utils.ProtoUtil;
+import com.google.protobuf.ByteString;
 import io.netty.channel.ChannelHandlerContext;
 
 public class TcpClientHandler extends AbstractNetMsgChannelInboundHandler {
@@ -19,7 +22,10 @@ public class TcpClientHandler extends AbstractNetMsgChannelInboundHandler {
         Components.BizResponse bizResponse;
         try {
             bizResponse = Components.BizResponse.parseFrom(data);
-            System.out.println("收到服务器响应:" + new String(bizResponse.getData().toByteArray()));
+            System.out.println("收到服务器响应:" + ProtoUtil.toJson(bizResponse));
+            ByteString bizData = bizResponse.getData();
+            SimpleStringMsg.SimpleStringResponse simpleStringResponse = SimpleStringMsg.SimpleStringResponse.parseFrom(bizData);
+            System.out.println("真实业务数据:" + ProtoUtil.toJson(simpleStringResponse));
         } catch (Exception e) {
             System.err.println("ClientHandler >> proto反序列化失败:" + new String(data));
         }
