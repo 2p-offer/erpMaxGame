@@ -1,6 +1,6 @@
 # erpMaxGame
 ## docker 镜像构建
-maven 执行clean + install,更新[gameserver-0.0.1.jar](gameserver%2Ftarget%2Fgameserver-0.0.1.jar) \
+maven 执行clean + install,更新 [gameserver-0.0.1.jar](gameserver%2Ftarget%2Fgameserver-0.0.1.jar) 
  - 使用idea插件可以直接compile或者install。
  - 执行mvn命令需要保证java-version = 21.可以临时修改JAVA_HOME: export JAVA_HOME=/Users/erp/Library/Java/JavaVirtualMachines/openjdk-21/Contents/Home
 
@@ -16,8 +16,8 @@ Content-Type=text/plain;body=脚本内容
 
 ## 客户端与服务器TCP通信
 
-服务器启动 [gameserver](gameserver%2Fsrc%2Fmain%2Fjava%2Fcom%2Ferp%2Fgameserver%2FGameserverApplication.java) \
-客户端启动 [Client](client%2Fsrc%2Fmain%2Fjava%2Fcom%2Ferp%2Fclient%2FClient.java)[Client]() \
+服务器启动 [Gameserver](gameserver%2Fsrc%2Fmain%2Fjava%2Fcom%2Ferp%2Fgameserver%2FGameserverApplication.java) \
+客户端启动 [Client](client%2Fsrc%2Fmain%2Fjava%2Fcom%2Ferp%2Fclient%2FClient.java) \
 输入内容可与server交互 \
 输入exit退出
 

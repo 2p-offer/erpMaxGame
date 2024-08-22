@@ -16,14 +16,14 @@ public class DefaultServerHandler extends SimpleChannelInboundHandler<NetMsg> {
     public void channelRegistered(ChannelHandlerContext ctx) {
         new NettyNetChannel(ctx);
         ctx.fireChannelRegistered();
-        logger.info("NET >> channelRegistered,ctx:{}", ctx);
+        logger.debug("NET >> channelRegistered,ctx:{}", ctx);
     }
 
     @Override
     protected void channelRead0(ChannelHandlerContext ctx, NetMsg msg) {
         NettyNetChannel channel = NettyNetChannel.findChannel(ctx);
         CodecService.getInstance().decode(channel, msg);
-        logger.info("NET >> received message: {}", msg);
+        logger.debug("NET >> received message: {}", msg);
         ctx.fireChannelRead(msg);
     }
 
@@ -31,12 +31,12 @@ public class DefaultServerHandler extends SimpleChannelInboundHandler<NetMsg> {
     @Override
     public void channelUnregistered(ChannelHandlerContext ctx) throws Exception {
         ctx.fireChannelUnregistered();
-        logger.info("NET >> channelUnregistered,ctx:{}", ctx);
+        logger.debug("NET >> channelUnregistered,ctx:{}", ctx);
     }
 
     @Override
     public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) {
-        logger.error("NET >> exceptionCaught,ctx:{}", ctx, cause);
+        logger.debug("NET >> exceptionCaught,ctx:{}", ctx, cause);
         cause.printStackTrace();
         ctx.close();
     }

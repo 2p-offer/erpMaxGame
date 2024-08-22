@@ -26,8 +26,8 @@ public class NettyServer {
     }
 
     public boolean start(AbstractNetMsgChannelInboundHandler bizHandler) {
-        bossGroup = new NioEventLoopGroup(NettyServerConfig.bossThreadNum);
-        workerGroup = new NioEventLoopGroup(NettyServerConfig.workerThreadNum);
+        bossGroup = new NioEventLoopGroup(NettyServerConfig.BOSS_THREAD_NUM);
+        workerGroup = new NioEventLoopGroup(NettyServerConfig.WORKER_THREAD_NUM);
         try {
             ServerBootstrap b = new ServerBootstrap();
             b.group(bossGroup, workerGroup)
