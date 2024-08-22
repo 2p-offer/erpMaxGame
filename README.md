@@ -21,3 +21,22 @@ Content-Type=text/plain;body=脚本内容
 输入内容可与server交互 \
 输入exit退出
 
+### 客户端请求字节流格式
+
+> 总体格式: allLength(int) + msgType(byte) + bodyData(bytes)
+
+- request类型.bodyData格式:
+
+> bodyData = requestId(int) + msgCode(int) + dataLength(int) + data(bytes)
+
+- notify 请求: \
+  XXX + XXX + data(bytes)
+
+针对所有的请求类型，data格式是一致的:
+> data = ridLength(byte) + rid(bytes) + bizData
+
+
+### 服务器响应字节流格式
+> 总体格式: allLength(int) + msgType(byte) + bodyData(bytes)
+- response类型.bodyData格式:
+> requestId（int）+ dataLength(int) + data(bytes)[Proto BizResponse](protocol%2Fsrc%2Fmain%2Fproto%2Fcommon.proto)

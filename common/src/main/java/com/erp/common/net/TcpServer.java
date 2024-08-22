@@ -1,7 +1,7 @@
 package com.erp.common.net;
 
 import com.erp.core.lifecycle.LifecycleBean;
-import com.erp.core.lifecycle.enums.LifecycleOrderType;
+import com.erp.core.lifecycle.enums.LifecycleOrderTypeEnum;
 import com.erp.net.NettyServer;
 import com.erp.net.handler.AbstractNetMsgChannelInboundHandler;
 
@@ -31,7 +31,7 @@ public class TcpServer implements LifecycleBean {
     }
 
     @Override
-    public LifecycleOrderType getOrder() {
-        return LifecycleOrderType.NET_SERVER;
+    public LifecycleOrderTypeEnum getOrder() {
+        return LifecycleOrderTypeEnum.NET_SERVER;
     }
 }

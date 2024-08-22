@@ -1,7 +1,7 @@
 package com.erp.client.net.coder;
 
 import com.erp.net.msg.NetMsg;
-import com.erp.net.msg.NetMsgType;
+import com.erp.net.msg.NetMsgTypeEnum;
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.handler.codec.ByteToMessageDecoder;
@@ -16,16 +16,20 @@ import java.util.List;
 public class NettyNetMsgClientDecoder extends ByteToMessageDecoder {
 
     @Override
-    protected void decode(ChannelHandlerContext context, ByteBuf byteBuf, List<Object> outList) throws Exception {
-        byteBuf.markReaderIndex();
-        int bodyLength = byteBuf.readInt();
-        byte msgTypeByte = byteBuf.readByte();
-        NetMsgType msgType = NetMsgType.getType(msgTypeByte);
-        byte[] data = new byte[bodyLength - 1];
-        byteBuf.readBytes(data);
+    protected void decode(ChannelHandlerContext context, ByteBuf byteBuf, List<Object> outList) {
+        //AllLength(int) + msgType(byte) + [ requestId(int) + bizDataLength(int) + bizData(bytes) ]
         NetMsg netMsg = new NetMsg();
+        byteBuf.markReaderIndex();
+        int dataLength = byteBuf.readInt();
+        byte msgTypeByte = byteBuf.readByte();
+        NetMsgTypeEnum msgType = NetMsgTypeEnum.getType(msgTypeByte);
         netMsg.setMsgType(msgType);
-        netMsg.setData(data);
+        int requestId = byteBuf.readInt();
+        netMsg.setRequestId(requestId);
+        int bizDataLength = byteBuf.readInt();
+        byte[] bizData = new byte[bizDataLength];
+        byteBuf.readBytes(bizData);
+        netMsg.setData(bizData);
         outList.add(netMsg);
     }
 }

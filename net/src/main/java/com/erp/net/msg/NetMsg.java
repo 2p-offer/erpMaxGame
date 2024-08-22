@@ -6,7 +6,7 @@ import java.util.Arrays;
 public class NetMsg {
 
     /** 数据类别 */
-    private NetMsgType msgType = NetMsgType.DATA;
+    private NetMsgTypeEnum msgType = NetMsgTypeEnum.DATA;
 
     /** 请求的唯一ID */
     private int requestId = -1;
@@ -14,17 +14,20 @@ public class NetMsg {
     /** 请求消息号 */
     private int msgCode;
 
+    /** 玩家id */
+    private String rid;
+
     /** 网络层处理之后的业务消息 */
     private byte[] bizData;
 
     /** 请求数据原始本体 */
     private byte[] data;
 
-    public NetMsgType getMsgType() {
+    public NetMsgTypeEnum getMsgType() {
         return msgType;
     }
 
-    public void setMsgType(NetMsgType msgType) {
+    public void setMsgType(NetMsgTypeEnum msgType) {
         this.msgType = msgType;
     }
 
@@ -42,6 +45,14 @@ public class NetMsg {
 
     public void setMsgCode(int msgCode) {
         this.msgCode = msgCode;
+    }
+
+    public String getRid() {
+        return rid;
+    }
+
+    public void setRid(String rid) {
+        this.rid = rid;
     }
 
     public byte[] getData() {

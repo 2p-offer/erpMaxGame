@@ -1,7 +1,7 @@
 package com.erp.net.utils;
 
 import com.erp.net.msg.NetMsg;
-import com.erp.net.msg.NetMsgType;
+import com.erp.net.msg.NetMsgTypeEnum;
 import com.google.protobuf.Message;
 
 public class NetMsgUtil {
@@ -17,7 +17,7 @@ public class NetMsgUtil {
      */
     public static NetMsg buildResponseMsg(int msgCode, int requestId, Message respMsg) {
         NetMsg response = new NetMsg();
-        response.setMsgType(NetMsgType.DATA);
+        response.setMsgType(NetMsgTypeEnum.DATA);
         response.setMsgCode(msgCode);
         response.setRequestId(requestId);
         response.setData(respMsg.toByteArray());

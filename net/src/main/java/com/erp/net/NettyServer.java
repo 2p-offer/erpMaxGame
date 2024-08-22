@@ -35,7 +35,7 @@ public class NettyServer {
                     .option(ChannelOption.SO_BACKLOG, 100)
                     .handler(new LoggingHandler(LogLevel.INFO))
                     .childHandler(new NettyTcpInitializer(bizHandler));
-
+            CodecService.getInstance().init();
             ChannelFuture f = b.bind(port).sync();
             logger.info("NET >> nettyServer启动成功, 监听端口:{}", port);
             return true;

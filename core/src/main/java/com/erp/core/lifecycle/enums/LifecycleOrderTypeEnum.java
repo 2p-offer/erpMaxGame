@@ -1,6 +1,6 @@
 package com.erp.core.lifecycle.enums;
 
-public enum LifecycleOrderType {
+public enum LifecycleOrderTypeEnum {
 
 
     /** 业务默认模块 */

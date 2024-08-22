@@ -2,7 +2,7 @@ package com.erp.net.coder;
 
 import com.erp.net.NettyServerConfig;
 import com.erp.net.msg.NetMsg;
-import com.erp.net.msg.NetMsgType;
+import com.erp.net.msg.NetMsgTypeEnum;
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.handler.codec.ByteToMessageDecoder;
@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Objects;
 
 /**
- * NetMsg 解码器 dataLength(int) + type(byte) + data(bytes) = all
+ * NetMsg 解码器 AllLength(int) + msgType(byte) + data(bytes) = all
  *
  * @see com.erp.net.msg.NetMsg
  */
@@ -31,7 +31,7 @@ public class NettyNetMsgDecoder extends ByteToMessageDecoder {
             throw new IllegalArgumentException(context + " , 数据长度超出限制:" + bodyLength);
         }
         byte msgTypeByte = byteBuf.readByte();
-        NetMsgType msgType = NetMsgType.getType(msgTypeByte);
+        NetMsgTypeEnum msgType = NetMsgTypeEnum.getType(msgTypeByte);
         if (Objects.isNull(msgType)) {
             context.close();
             throw new IllegalArgumentException(context + " , 未经定义的数据类型:" + msgTypeByte);

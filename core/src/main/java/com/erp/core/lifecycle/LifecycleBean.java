@@ -1,6 +1,6 @@
 package com.erp.core.lifecycle;
 
-import com.erp.core.lifecycle.enums.LifecycleOrderType;
+import com.erp.core.lifecycle.enums.LifecycleOrderTypeEnum;
 
 public interface LifecycleBean {
 
@@ -10,8 +10,8 @@ public interface LifecycleBean {
     default void stop() {
     }
 
-    default LifecycleOrderType getOrder(){
-        return LifecycleOrderType.DEFAULT;
+    default LifecycleOrderTypeEnum getOrder(){
+        return LifecycleOrderTypeEnum.DEFAULT;
     }
 
 }

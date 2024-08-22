@@ -1,29 +1,33 @@
 package com.erp.client.net;
 
 import com.alibaba.fastjson2.JSONObject;
+import com.erp.biz.logic.msg.request.SimpleStringMsg;
 import com.erp.client.net.coder.NettyNetMsgClientDecoder;
 import com.erp.client.net.coder.NettyNetMsgClientEncoder;
 import com.erp.net.constant.NetConstant;
 import com.erp.net.msg.NetMsg;
+import com.google.protobuf.InvalidProtocolBufferException;
 import io.netty.bootstrap.Bootstrap;
 import io.netty.channel.*;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioSocketChannel;
+import org.apache.commons.lang.StringUtils;
 
 public class NettyClient {
 
+    private int ridSub;
     private final String host;
     private final int port;
     private Channel channel;
     private EventLoopGroup group;
     private ClientMsgBuilder msgBuilder;
-    /** 是否已经登录 */
-    private boolean login;
+    private final ClientContext context;
 
     public NettyClient(String host, int port) {
         this.host = host;
         this.port = port;
+        context = new ClientContext();
     }
 
     public void run() throws Exception {
@@ -50,16 +54,27 @@ public class NettyClient {
             System.out.println("Client >> 连接已经不存活,客户端也关闭");
             close();
         }
-        NetMsg netMsg = msgBuilder.buildData(msgCode, data);
+        if (isLoginMsg(msgCode)) {
+            context.setAccount(data);
+            String rid = Integer.toString(++ridSub);
+            context.setRid(rid);
+        }
+        NetMsg netMsg = msgBuilder.buildData(context, msgCode, data);
         System.out.println("Client >> 发送数据:" + JSONObject.toJSONString(data));
         channel.writeAndFlush(netMsg);
-        if (isLoginMsg(msgCode)) {
-            login = true;
-        }
+    }
 
+    public void receiveMsg(NetMsg msg) {
+        try {
+            SimpleStringMsg.SimpleStringResponse simpleStringResponse = SimpleStringMsg.SimpleStringResponse.parseFrom(msg.getBizData());
+            System.out.println("业务数据:" + simpleStringResponse.getData());
+        } catch (InvalidProtocolBufferException e) {
+            throw new RuntimeException(e);
+        }
     }
 
 
+    /** 是不是登录协议 */
     private boolean isLoginMsg(int msgCode) {
         return NetConstant.LOGIN_CODE == msgCode;
     }
@@ -85,7 +100,7 @@ public class NettyClient {
      * 是否已经登录
      */
     private boolean isLogin() {
-        return login;
+        return StringUtils.isNotEmpty(context.getRid());
     }
 
 }

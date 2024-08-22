@@ -1,6 +1,6 @@
 package com.erp.gameserver.resolver;
 
-import com.erp.common.exception.ResCode;
+import com.erp.common.exception.ResCodeEnum;
 import com.erp.gameserver.model.Player;
 import com.erp.net.channel.NettyNetChannel;
 import com.erp.net.msg.NetMsg;
@@ -30,7 +30,7 @@ public class ResolverChainContext {
     /** 请求的响应数据 */
     private Message response;
 
-    private ResCode resCode = ResCode.OK;
+    private ResCodeEnum resCode = ResCodeEnum.OK;
 
     public Player getPlayer() {
         return player;
@@ -88,11 +88,11 @@ public class ResolverChainContext {
         this.response = response;
     }
 
-    public ResCode getResCode() {
+    public ResCodeEnum getResCode() {
         return resCode;
     }
 
-    public void setResCode(ResCode resCode) {
+    public void setResCode(ResCodeEnum resCode) {
         this.resCode = resCode;
     }
 }

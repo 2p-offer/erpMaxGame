@@ -1,7 +1,7 @@
 package com.erp.common.exception;
 
 /** 业务错误码级别 */
-public enum ResCodeLevelType {
+public enum ResCodeLevelTypeEnum {
     SUCCESS(0),
     NOTIFY(1),
     EXCEPTION(2),
@@ -9,7 +9,7 @@ public enum ResCodeLevelType {
 
     private final int level;
 
-    ResCodeLevelType(int level) {
+    ResCodeLevelTypeEnum(int level) {
         this.level = level;
     }
 
