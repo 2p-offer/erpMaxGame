@@ -1,16 +1,14 @@
 ports:
-  tcp: 28001
-  http: 28002
-  admin: 28003
-  rpc: 28004
+  tcp: 28011
+  http: 28012
+  admin: 28013
+  rpc: 28014
 
 server:
   port: ${ports.http}
 
 logging:
   config: classpath:log4j2-spring.xml
-net:
-  tcp-port: ${ports.tcp}
 
 # 服务管理配置
 management:

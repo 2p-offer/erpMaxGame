@@ -1,8 +1,8 @@
 package com.erp.gameserver.resolver;
 
-import com.erp.common.exception.LogicException;
-import com.erp.common.exception.ResCodeEnum;
-import com.erp.common.exception.ServerStartFailException;
+import com.erp.core.exception.LogicException;
+import com.erp.core.exception.ResCodeEnum;
+import com.erp.core.exception.ServerStartFailException;
 import com.erp.core.bean.BeanManager;
 import com.erp.net.channel.NettyNetChannel;
 import com.erp.net.msg.NetMsg;

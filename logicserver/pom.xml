@@ -9,7 +9,7 @@
         <version>0.0.1</version>
     </parent>
 
-    <artifactId>net</artifactId>
+    <artifactId>logicserver</artifactId>
 
     <properties>
         <maven.compiler.source>21</maven.compiler.source>
@@ -24,4 +24,5 @@
             <version>${project.version}</version>
         </dependency>
     </dependencies>
+
 </project>

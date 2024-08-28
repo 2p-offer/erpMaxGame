@@ -1,6 +1,6 @@
 package com.erp.gameserver.resolver;
 
-import com.erp.common.exception.ResCodeEnum;
+import com.erp.core.exception.ResCodeEnum;
 import com.erp.gameserver.model.Player;
 import com.erp.net.channel.NettyNetChannel;
 import com.erp.net.msg.NetMsg;

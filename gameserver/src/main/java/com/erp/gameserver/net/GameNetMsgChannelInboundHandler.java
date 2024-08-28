@@ -1,6 +1,6 @@
 package com.erp.gameserver.net;
 
-import com.erp.common.logger.MDCKey;
+import com.erp.core.logger.MDCKey;
 import com.erp.core.logger.Logger;
 import com.erp.gameserver.resolver.ResolverChainServiceImpl;
 import com.erp.net.channel.NettyNetChannel;

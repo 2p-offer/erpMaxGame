@@ -1,20 +1,18 @@
 package com.erp.net;
 
+import com.erp.core.logger.Logger;
 import com.erp.net.channel.NettyNetChannel;
 import com.erp.net.constant.NetConstant;
 import com.erp.net.msg.NetMsg;
 import com.erp.net.msg.NetMsgTypeEnum;
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
-import org.apache.commons.lang.StringUtils;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.apache.commons.lang3.StringUtils;
 
 import java.util.Objects;
 
 public class CodecService {
 
-    private final Logger logger = LogManager.getLogger(this);
 
     private boolean init;
 
@@ -43,7 +41,7 @@ public class CodecService {
         }
         NetMsgTypeEnum msgType = msg.getMsgType();
         if (!Objects.equals(NetMsgTypeEnum.DATA, msgType)) {
-            logger.error("Codec >> 发送的消息类型不是data类型:{}", msgType);
+            Logger.getLogger(this).error("Codec >> 发送的消息类型不是data类型:{}", msgType);
             return false;
         }
         // 解压缩处理
@@ -54,7 +52,7 @@ public class CodecService {
 
         boolean checkChannelResult = checkChannel(channel, msg);
         if (!checkChannelResult) {
-            logger.error("NET >> channel 和 msg 校验失败 channel:{},msg:{}", channel, msg);
+            Logger.getLogger(this).error("NET >> channel 和 msg 校验失败 channel:{},msg:{}", channel, msg);
             return false;
         }
 
@@ -86,11 +84,11 @@ public class CodecService {
      */
     private boolean checkChannel(NettyNetChannel channel, NetMsg msg) {
         if (Objects.isNull(channel)) {
-            logger.error("NET >> channel is null ");
+            Logger.getLogger(this).error("NET >> channel is null ");
             return false;
         }
         if (StringUtils.isEmpty(channel.getRid()) && msg.getMsgCode() != NetConstant.LOGIN_CODE) {
-            logger.error("NET >> 不是登录消息,但是rid为空,channel:{},msg:{}", channel, msg);
+            Logger.getLogger(this).error("NET >> 不是登录消息,但是rid为空,channel:{},msg:{}", channel, msg);
             return false;
         }
         return true;

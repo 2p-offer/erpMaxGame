@@ -1,9 +1,9 @@
 package com.erp.net.push;
 
+import com.erp.core.logger.Logger;
 import com.erp.net.channel.NettyNetChannel;
 import com.erp.net.msg.NetMsg;
 import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 import java.util.Objects;
 
@@ -13,8 +13,6 @@ import java.util.Objects;
 public class PushService {
 
 
-    private static final Logger logger = LogManager.getLogger(PushService.class);
-
     /**
      * 给客户端发送响应
      *
@@ -23,19 +21,19 @@ public class PushService {
      */
     public static boolean sendResponse(NettyNetChannel nettyNetChannel, NetMsg response) {
         if (Objects.isNull(nettyNetChannel)) {
-            logger.error("PUSH >> channel is null");
+            Logger.getLogger(PushService.class).error("PUSH >> channel is null");
             return false;
         }
         if (Objects.isNull(response)) {
-            logger.error("PUSH >> response is null");
+            Logger.getLogger(PushService.class).error("PUSH >> response is null");
             return false;
         }
         if (!nettyNetChannel.isAlive()) {
-            logger.error("PUSH >> channel is not alive");
+            Logger.getLogger(PushService.class).error("PUSH >> channel is not alive");
             return false;
         }
         nettyNetChannel.sendMsg(response);
-        logger.debug("PUSH >> 给客户端发送响应,channel:{}.data:{}", nettyNetChannel, response);
+        Logger.getLogger(PushService.class).debug("PUSH >> 给客户端发送响应,channel:{}.data:{}", nettyNetChannel, response);
         return true;
     }
 

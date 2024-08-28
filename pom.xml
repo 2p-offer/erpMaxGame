@@ -16,8 +16,8 @@
         <module>gameserver</module>
         <module>protocol</module>
         <module>net</module>
-        <module>common</module>
         <module>client</module>
+        <module>logicserver</module>
     </modules>
 
     <groupId>com.erp</groupId>
@@ -34,6 +34,7 @@
         <log4j2.version>2.20.0</log4j2.version>
         <fastjson2.version>2.0.51</fastjson2.version>
         <netty.version>4.1.112.Final</netty.version>
+        <curator.version>5.7.0</curator.version>
     </properties>
     <dependencies>
         <dependency>
@@ -112,6 +113,25 @@
             <artifactId>fastjson2</artifactId>
             <version>${fastjson2.version}</version>
         </dependency>
+
+        <!--curator-->
+        <dependency>
+            <groupId>org.apache.curator</groupId>
+            <artifactId>curator-framework</artifactId>
+            <version>${curator.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.curator</groupId>
+            <artifactId>curator-recipes</artifactId>
+            <version>${curator.version}</version>
+        </dependency>
+
+        <dependency>
+            <artifactId>commons-lang3</artifactId>
+            <groupId>org.apache.commons</groupId>
+        </dependency>
+
+
     </dependencies>
 
 

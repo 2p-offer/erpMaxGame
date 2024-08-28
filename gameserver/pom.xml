@@ -19,7 +19,12 @@
     <dependencies>
         <dependency>
             <groupId>com.erp</groupId>
-            <artifactId>common</artifactId>
+            <artifactId>core</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.erp</groupId>
+            <artifactId>net</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>
