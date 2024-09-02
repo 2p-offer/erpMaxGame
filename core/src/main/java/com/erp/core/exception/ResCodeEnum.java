@@ -10,6 +10,8 @@ public enum ResCodeEnum {
 
     ERROR_CODE_RESOLVER_REPLY(999000, "服务器启动错误,消息号对应的处理链重复配置", ResCodeLevelTypeEnum.ERROR),
     ERROR_CODE_RESOLVER_CHAIN_NULL(999001, "服务器启动错误,默认消息号对应的处理链未配置", ResCodeLevelTypeEnum.ERROR),
+
+    ERROR_CODE_SERVER_NODE_NOT_FOUND(999100, "服务节点错误,未找到对应的服务节点", ResCodeLevelTypeEnum.ERROR),
     ERROR_UNKNOWN(999999, "未知错误", ResCodeLevelTypeEnum.ERROR);
 
     private final int code;

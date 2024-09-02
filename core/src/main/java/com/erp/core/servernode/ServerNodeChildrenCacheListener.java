@@ -3,7 +3,10 @@ package com.erp.core.servernode;
 import com.alibaba.fastjson2.JSON;
 import com.alibaba.fastjson2.JSONReader;
 import com.erp.core.constant.CoreConstants;
+import com.erp.core.event.EventManager;
 import com.erp.core.logger.Logger;
+import com.erp.core.rpc.RpcServerConnectEvent;
+import com.erp.core.rpc.RpcServerRemoveEvent;
 import org.apache.curator.framework.CuratorFramework;
 import org.apache.curator.framework.recipes.cache.ChildData;
 import org.apache.curator.framework.recipes.cache.PathChildrenCacheEvent;
@@ -11,6 +14,7 @@ import org.apache.curator.framework.recipes.cache.PathChildrenCacheListener;
 
 import java.util.Objects;
 
+/** 服务发现zk节点监听器 */
 public class ServerNodeChildrenCacheListener implements PathChildrenCacheListener {
 
     private final ServerNodeCache localCache;
@@ -39,6 +43,7 @@ public class ServerNodeChildrenCacheListener implements PathChildrenCacheListene
                 }
                 ServerNode serverNode = JSON.parseObject(data, ServerNode.class, autoTypeFilter);
                 localCache.addNode(serverNode);
+                EventManager.getInstance().publishEvent(new RpcServerConnectEvent(this, serverNode));
             }
             case CHILD_UPDATED -> {
                 if (Objects.isNull(data)) {
@@ -46,10 +51,12 @@ public class ServerNodeChildrenCacheListener implements PathChildrenCacheListene
                 }
                 ServerNode serverNode = JSON.parseObject(data, ServerNode.class, autoTypeFilter);
                 localCache.updateNode(serverNode);
+                EventManager.getInstance().publishEvent(new RpcServerConnectEvent(this, serverNode));
             }
             case CHILD_REMOVED -> {
                 String serverId = getServerId(path);
                 localCache.removeNode(serverId);
+                EventManager.getInstance().publishEvent(new RpcServerRemoveEvent(this, serverId));
             }
             default -> Logger.getLogger(this).debug("zk 节点发生变化，type:{},path:{},data:{}", type, path, new String(data));
         }

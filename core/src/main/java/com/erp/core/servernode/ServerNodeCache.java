@@ -11,8 +11,18 @@ import java.util.concurrent.ConcurrentHashMap;
 /** 服务节点信息本地缓存 */
 public class ServerNodeCache {
 
+    /** 本服务serverId */
+    private String serverId;
     /** serverType : <serverId : serverNode> */
     private final Map<ServerType, Map<String, ServerNode>> nodeData = new EnumMap<>(ServerType.class);
+
+    public String getServerId() {
+        return serverId;
+    }
+
+    public void setServerId(String serverId) {
+        this.serverId = serverId;
+    }
 
     /** 添加一个节点 */
     public void addNode(ServerNode node) {

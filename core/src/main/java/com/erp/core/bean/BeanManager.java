@@ -28,6 +28,17 @@ public class BeanManager {
     }
 
     /**
+     * 获取带某个注解的bean对象
+     *
+     * @param annotationType 注解类型
+     * @return 匹配的bean的Map，包含 bean 名称作为键，包含相应的 bean 实例作为值
+     */
+    public static Map<String, Object> getBeanWithAnnotation(Class<? extends Annotation> annotationType) {
+        checkBeanFactory();
+        return BEAN_FACTORY.getBeansWithAnnotation(annotationType);
+    }
+
+    /**
      * 获取对象
      *
      * @param clazz class

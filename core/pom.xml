@@ -15,6 +15,11 @@
         <groovy.version>4.0.21</groovy.version>
     </properties>
     <dependencies>
+        <dependency>
+            <groupId>com.erp</groupId>
+            <artifactId>rpc</artifactId>
+            <version>${project.version}</version>
+        </dependency>
         <!-- https://mvnrepository.com/artifact/org.apache.groovy/groovy -->
         <dependency>
             <groupId>org.apache.groovy</groupId>

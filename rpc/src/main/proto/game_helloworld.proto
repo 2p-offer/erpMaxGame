@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+option java_package = "com.erp.rpc.game.hello";
+option java_outer_classname = "HelloWorldApi";
+
+service Hello {
+  rpc SayHello (HelloRequest) returns (HelloResponse);
+}
+
+message HelloRequest {
+  string data = 1;
+}
+
+message HelloResponse {
+  string data = 1;
+}

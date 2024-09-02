@@ -4,8 +4,7 @@ import com.erp.core.lifecycle.enums.LifecycleOrderTypeEnum;
 
 public interface LifecycleBean {
 
-    default void start() {
-    }
+    void start();
 
     default void stop() {
     }

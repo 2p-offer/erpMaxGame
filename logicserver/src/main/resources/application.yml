@@ -1,11 +1,12 @@
 ports:
-  tcp: 28011
   http: 28012
   admin: 28013
   rpc: 28014
 
 server:
   port: ${ports.http}
+  shutdown: graceful
+
 
 logging:
   config: classpath:log4j2-spring.xml

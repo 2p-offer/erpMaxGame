@@ -21,6 +21,9 @@
             <AppenderRef ref="Console"/>
             <AppenderRef ref="RollingFile"/>
         </AsyncLogger>
+        <!--        <AsyncLogger name="org.springframework" additivity="false" level="INFO">-->
+        <!--            <AppenderRef ref="Console"/>-->
+        <!--        </AsyncLogger>-->
     </Loggers>
 
 
