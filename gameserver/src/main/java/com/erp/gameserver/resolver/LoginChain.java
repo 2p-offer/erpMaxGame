@@ -1,7 +1,9 @@
 package com.erp.gameserver.resolver;
 
 import com.erp.biz.logic.msg.request.SimpleStringMsg;
+import com.erp.core.rpc.RpcChannel;
 import com.erp.gameserver.model.Player;
+import com.google.protobuf.Message;
 import org.springframework.stereotype.Component;
 
 /**
@@ -14,7 +16,8 @@ public class LoginChain implements ResolverChain {
     public void resolve0(ResolverChainContext context) {
 
         Player player = new Player();
-        if (context.getRequest() instanceof SimpleStringMsg.SimpleStringRequest request) {
+        Message requestMsg = context.getRequest();
+        if (requestMsg instanceof SimpleStringMsg.SimpleStringRequest request) {
             player.setId(request.getData());
             context.setPlayer(player);
             context.getChannel().onLoginSuccess(player.getId());

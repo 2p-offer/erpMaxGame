@@ -5,7 +5,7 @@ spring:
     active: dev
   cloud:
     zookeeper:
-      connect-string: 192.168.151.63:14410
+      connect-string: ${zoo.url}
       config:
         enabled: true
         #        配置根节点名称，默认为config。

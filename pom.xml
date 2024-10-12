@@ -19,6 +19,8 @@
         <module>client</module>
         <module>logicserver</module>
         <module>rpc</module>
+        <module>jdiff-plugin</module>
+        <module>jdiff</module>
     </modules>
 
     <groupId>com.erp</groupId>

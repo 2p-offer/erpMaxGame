@@ -1,6 +1,7 @@
 package com.erp.gameserver.resolver;
 
 import com.erp.core.exception.ResCodeEnum;
+import com.erp.core.rpc.RpcChannel;
 import com.erp.gameserver.model.Player;
 import com.erp.net.channel.NettyNetChannel;
 import com.erp.net.msg.NetMsg;
@@ -14,6 +15,8 @@ import java.util.Iterator;
 public class ResolverChainContext {
 
     private Player player;
+
+    private RpcChannel rpcChannel;
 
     /** 消息本体 */
     private NetMsg msg;
@@ -32,12 +35,23 @@ public class ResolverChainContext {
 
     private ResCodeEnum resCode = ResCodeEnum.OK;
 
+    public ResolverChainContext() {
+    }
+
     public Player getPlayer() {
         return player;
     }
 
     public void setPlayer(Player player) {
         this.player = player;
+    }
+
+    public RpcChannel getRpcChannel() {
+        return rpcChannel;
+    }
+
+    public void setRpcChannel(RpcChannel rpcChannel) {
+        this.rpcChannel = rpcChannel;
     }
 
     public int getMsgCode() {

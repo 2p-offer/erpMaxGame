@@ -46,7 +46,7 @@ public class RpcServerManager {
         try {
             createNewChannel(serverNode);
         } catch (Throwable t) {
-            Logger.getLogger(this).warn("RPC Server >> 新连接建立失败,考虑目标服务是否启动停止操作过快,targetNode:{}", serverNode);
+            Logger.getLogger(this).error("RPC Server >> 新连接建立失败,考虑目标服务是否启动停止操作过快,targetNode:{}", serverNode, t);
         }
     }
 
@@ -120,7 +120,13 @@ public class RpcServerManager {
         HelloWorldApi.HelloRequest request = HelloWorldApi.HelloRequest.newBuilder()
                 .setData("Channel Init For Connect !")
                 .build();
-        HelloWorldApi.HelloResponse response = HelloGrpc.newBlockingStub(channel).sayHello(request);
+        try {
+            HelloWorldApi.HelloResponse response = HelloGrpc.newBlockingStub(channel).sayHello(request);
+        } catch (StatusRuntimeException exception) {
+            Metadata trailers = exception.getTrailers();
+            String s = trailers.get(RpcConstant.CUSTOM_ERROR_CODE_KEY);
+            Logger.getLogger(this).error("RPC Server >> rpc connect 失败 {} :", s, exception);
+        }
         Logger.getLogger(this).info("RPC Server >> rpc connect完成:{}", node);
         return channel;
     }
